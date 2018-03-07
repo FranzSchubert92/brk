@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div id="id01"></div>
+
+<script>
+var xmlhttp = new XMLHttpRequest();
+var url = "https://randomuser.me/api/?results=10";
+
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var jdat = JSON.parse(this.responseText);
+	makeTable(jdat.results);
+    }
+};
+
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+function makeTable(arr) {
+    out = '';
+    out += '<div class="row text-primary"><div class="col-sm-2">Pic</div><div class="col-sm-4">Name</div><div class="col-sm-2">Gender</div><div class="col-sm-4">Email</div></div>';
+    var i = 0;
+    for (; i < arr.length; ++i) {
+	out += '<div class="row">';
+	out += '<div class="col-sm-2"><img src=' + arr[i].picture.thumbnail + '></div>';
+	out += '<div class="col-sm-4">' + arr[i].name.first + ' ' + arr[i].name.last + '</div>';
+	out += '<div class="col-sm-2">' + arr[i].gender + '</div>';
+	out += '<div class="col-sm-4">' + arr[i].email + '</div>';
+	out += '</div>'; 
+    }
+    document.getElementById("id01").innerHTML = out;
+}
+</script>
+
+</body>
+</html>
