@@ -6,7 +6,13 @@ will swim in the pool alone. However, every 50th day, both boys will swim in
 the same pool. Write some pseudocode that loops through 365 days, and outputs 
 who is swimming on each day starting at day 1.
 
-
+DocTests
+>>> who_is_swimming(1)
+['john']
+>>> who_is_swimming(3)
+['jack']
+>>> who_is_swimming(50)
+['jack', 'john']
 
 """
 
@@ -23,9 +29,9 @@ def who_is_swimming(n):
     return answer
 
 def swimming_report():
-    print("Day", "Who is Swimming?")
+    print("Day", "Who is Swimming?") # heading
     for day in range(1, 365+1):
-        print(day, ": ", who_is_swimming(day)) 
+        print(day, ": ", who_is_swimming(day)) # data 
 
 if __name__ == "__main__":
     import doctest
